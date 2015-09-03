@@ -279,7 +279,7 @@ void Dialog::onActionAddFolder()
         {
             QTreeWidgetItem *newItem = new QTreeWidgetItem(parent);
             newItem->setText(0, editor.getName());
-            newItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
+            newItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled);
        }
 
 //        delete editor;
