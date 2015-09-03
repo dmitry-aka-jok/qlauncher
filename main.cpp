@@ -14,9 +14,12 @@
 
 #include "settings.h"
 
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    a.setWindowIcon(QIcon(":/pics/infologo.gif"));
+
     QApplication::setApplicationName("qlauncher");
 
     QString appDatabase;
@@ -42,7 +45,8 @@ int main(int argc, char *argv[])
         delete defaults;
     }
 
-    QFont font("Arial", 16);
+
+    QFont font(gs->value("fonts/dialogs_name", "Arial").toString() , gs->value("fonts/dialogs_size", 16).toInt());
     QApplication::setFont(font);
 
 
@@ -167,13 +171,17 @@ int main(int argc, char *argv[])
         return 2;
     }
 
-    QPixmap pixmap(":/pics/splash.gif");
+    // change
     QSplashScreen splash;
+    QPixmap pixmap(":/pics/splash.gif");
     splash.setPixmap(pixmap);
+    QFont splashFont(gs->value("fonts/splash_name", "Arial").toString() , gs->value("fonts/splash_size", 13).toInt());
+    splash.setFont(splashFont);
+    splash.showMessage(QStringLiteral("\n Загрузка..."), Qt::AlignHCenter);
     splash.show();
-    //qDebug()<<
+    a.processEvents() ;
 
-    splash.showMessage(QStringLiteral("\nЗагрузка..."), Qt::AlignHCenter);
+
 
     QSqlDatabase db = QSqlDatabase::addDatabase(DBDRIVER);
     db.setDatabaseName(appDatabase);
@@ -300,10 +308,11 @@ int main(int argc, char *argv[])
         loaded += query.value(3).toInt();
 
         int rr = (int) loaded * 100 / fullSize ;
-        splash.showMessage(QStringLiteral("\nЗагрузка...(%1 %)").arg(rr), Qt::AlignHCenter);
+        splash.showMessage(QStringLiteral("\n Загрузка...(%1 %)").arg(rr), Qt::AlignHCenter);
+        //splash.setProgress(rr);
     }
 
-    splash.showMessage(QStringLiteral("\nЗапуск"), Qt::AlignHCenter);
+    splash.showMessage(QStringLiteral("\n Запуск"), Qt::AlignHCenter);
 
     if(isAppToLaunch){
 #ifdef Q_OS_WIN
