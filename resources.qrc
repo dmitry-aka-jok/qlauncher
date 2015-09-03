@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/">
+        <file>pics/ok.gif</file>
+        <file>pics/add.gif</file>
+        <file>pics/add2.gif</file>
+        <file>pics/cancel.gif</file>
+        <file>pics/config.gif</file>
+        <file>pics/edit.gif</file>
+        <file>pics/help.gif</file>
+        <file>pics/infologo.gif</file>
+        <file>pics/splash.gif</file>
+        <file>defaults/default.ini</file>
+    </qresource>
+</RCC>
